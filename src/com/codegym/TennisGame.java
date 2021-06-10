@@ -5,6 +5,18 @@ public class TennisGame {
     public char BAR = '-';
     String score = "";
 
+
+    public String getScore(int playerOneScore, int playerTwoScore) {
+        if (playerOneScore == playerTwoScore) {
+            equalScore(playerOneScore);
+        } else if (playerOneScore >= 4 || playerTwoScore >= 4) {
+            fourOrMorePoint(playerOneScore, playerTwoScore);
+        } else {
+            calculatePoint(playerOneScore, playerTwoScore);
+        }
+        return score;
+    }
+
     public void equalScore(int playerOneScore) {
         switch (playerOneScore) {
             case 0 -> score = "Love-All";
@@ -24,14 +36,15 @@ public class TennisGame {
     }
 
     public void calculatePoint(int playerOneScore, int playerTwoScore) {
-        int tempScore;
+        int checkScore;
+        score = "";
         for (int i = 1; i < 3; i++) {
-            if (i == 1) tempScore = playerOneScore;
+            if (i == 1) checkScore = playerOneScore;
             else {
                 score += BAR;
-                tempScore = playerTwoScore;
+                checkScore = playerTwoScore;
             }
-            switch (tempScore) {
+            switch (checkScore) {
                 case 0 -> score += "Love";
 
                 case 1 -> score += "Fifteen";
@@ -41,17 +54,5 @@ public class TennisGame {
                 case 3 -> score += "Forty";
             }
         }
-    }
-
-    public String getScore(int playerOneScore, int playerTwoScore) {
-        score = "";
-        if (playerOneScore == playerTwoScore) {
-            equalScore(playerOneScore);
-        } else if (playerOneScore >= 4 || playerTwoScore >= 4) {
-            fourOrMorePoint(playerOneScore, playerTwoScore);
-        } else {
-            calculatePoint(playerOneScore, playerTwoScore);
-        }
-        return score;
     }
 }
