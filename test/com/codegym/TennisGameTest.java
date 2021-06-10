@@ -1,14 +1,12 @@
 package com.codegym;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-
-import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class TennisGameTest {
@@ -78,6 +76,6 @@ public class TennisGameTest {
             if (i < this.player2Score)
                 m_score2 += 1;
         }
-        assertEquals(this.expectedScore, TennisGame.getScore(m_score1, m_score2));
+        Assertions.assertEquals(this.expectedScore, TennisGame.getScore(m_score1, m_score2));
     }
 }

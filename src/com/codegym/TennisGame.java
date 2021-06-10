@@ -2,11 +2,11 @@ package com.codegym;
 
 public class TennisGame {
 
-    public char BAR = '-';
-    String score = "";
+    public static char BAR = '-';
+    static String score = "";
 
 
-    public String getScore(int playerOneScore, int playerTwoScore) {
+    public static String getScore(int playerOneScore, int playerTwoScore) {
         if (playerOneScore == playerTwoScore) {
             equalScore(playerOneScore);
         } else if (playerOneScore >= 4 || playerTwoScore >= 4) {
@@ -17,7 +17,7 @@ public class TennisGame {
         return score;
     }
 
-    public void equalScore(int playerOneScore) {
+    public static void equalScore(int playerOneScore) {
         switch (playerOneScore) {
             case 0 -> score = "Love-All";
             case 1 -> score = "Fifteen-All";
@@ -27,7 +27,7 @@ public class TennisGame {
         }
     }
 
-    public void fourOrMorePoint(int playerOneScore, int playerTwoScore) {
+    public static void fourOrMorePoint(int playerOneScore, int playerTwoScore) {
         int minusResult = playerOneScore - playerTwoScore;
         if (minusResult == 1) score = "Advantage player1";
         else if (minusResult == -1) score = "Advantage player2";
@@ -35,7 +35,7 @@ public class TennisGame {
         else score = "Win for player2";
     }
 
-    public void calculatePoint(int playerOneScore, int playerTwoScore) {
+    public static void calculatePoint(int playerOneScore, int playerTwoScore) {
         int checkScore;
         score = "";
         for (int i = 1; i < 3; i++) {
