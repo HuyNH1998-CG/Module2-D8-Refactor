@@ -1,9 +1,11 @@
 package com.codegym;
 
 public class TennisGame {
-    static String score = "";
 
-    public static void equalScore(int playerOneScore) {
+    public char BAR = '-';
+    String score = "";
+
+    public void equalScore(int playerOneScore) {
         switch (playerOneScore) {
             case 0 -> score = "Love-All";
             case 1 -> score = "Fifteen-All";
@@ -13,7 +15,7 @@ public class TennisGame {
         }
     }
 
-    public static void fourOrMorePoint(int playerOneScore, int playerTwoScore) {
+    public void fourOrMorePoint(int playerOneScore, int playerTwoScore) {
         int minusResult = playerOneScore - playerTwoScore;
         if (minusResult == 1) score = "Advantage player1";
         else if (minusResult == -1) score = "Advantage player2";
@@ -21,22 +23,28 @@ public class TennisGame {
         else score = "Win for player2";
     }
 
-    public static void calculatePoint(int playerOneScore, int playerTwoScore) {
-        int tempScore = Math.max(playerOneScore, playerTwoScore);
-        switch (tempScore) {
-            case 0 -> score += "Love";
+    public void calculatePoint(int playerOneScore, int playerTwoScore) {
+        int tempScore;
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) tempScore = playerOneScore;
+            else {
+                score += BAR;
+                tempScore = playerTwoScore;
+            }
+            switch (tempScore) {
+                case 0 -> score += "Love";
 
-            case 1 -> score += "Fifteen";
+                case 1 -> score += "Fifteen";
 
-            case 2 -> score += "Thirty";
+                case 2 -> score += "Thirty";
 
-            case 3 -> score += "Forty";
-
+                case 3 -> score += "Forty";
+            }
         }
     }
 
-    public static String getScore(int playerOneScore, int playerTwoScore) {
-
+    public String getScore(int playerOneScore, int playerTwoScore) {
+        score = "";
         if (playerOneScore == playerTwoScore) {
             equalScore(playerOneScore);
         } else if (playerOneScore >= 4 || playerTwoScore >= 4) {
